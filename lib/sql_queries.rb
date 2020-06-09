@@ -8,7 +8,7 @@
 
 def selects_the_titles_of_all_projects_and_their_pledge_amounts_alphabetized_by_title
   # "SELECT projects.title SUM(title) FROM Projects LEFT OUTER JOIN Pledges on Projects.title = Pledges.project_id ORDER BY title ASC";
-  "SELECT Projects.title as project_id, Pledges.pledge_project_id FROM Projects LEFT OUTER JOIN Pledges on Projects.title = Pledges.project_id ORDER BY title ASC";
+  "SELECT Projects.title as project_id, Pledges.project_id FROM Projects LEFT OUTER JOIN Pledges ON Projects.title = Pledges.project_id ORDER BY title ASC";
 
 end
 
