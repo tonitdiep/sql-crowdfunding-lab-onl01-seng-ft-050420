@@ -17,16 +17,25 @@ end
 
 def selects_the_user_name_age_and_pledge_amount_for_all_pledges_alphabetized_by_name
   "SELECT users.name, users.age, SUM(pledges.amount) FROM users, pledges 
-  ON pledges.user_id = users.id
+  WHERE users.id = pledges.user_id
   GROUP BY pledges.user_id
   ORDER BY users.name ASC
   ";
 end
 
 def selects_the_titles_and_amount_over_goal_of_all_projects_that_have_met_their_funding_goal
-  "";
+  "SELECT projects.title SUM(pledges.amount) - projects.funding_goal FROM projects
+  INNER JOIN pledges
+  ON projects.id = pledges.project_id
+  GROUP BY projects.title
+  HAVING projects.id = pledges.project_id
+  ORDER BY SUM(pledges.amount) >= projects.funding_goal";
 end
 
+# SO - instead of FROM two tables try FROM projects INNER JOIN _______ ON ______ = __________
+# GROUP BY title is PERFECT
+# HAVING
+# after having you want to say in code “having the sum of the pledges amount being greater or equal to the funding goal”
 def selects_user_names_and_amounts_of_all_pledges_grouped_by_name_then_orders_them_by_the_summed_amount
   "Write your SQL query Here"
 end
